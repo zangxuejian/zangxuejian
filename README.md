@@ -4,7 +4,7 @@
 
 **Infrastructure / Cloud Native / Observability / AI Infra**
 
-这里放我的项目和技术记录。内容主要来自日常工作中碰到的问题，以及下班后做的一些小工具。
+把工作中遇到的问题和业余做的小项目整理成技术记录。重点关注容器平台、基础设施运维、可观测性，以及 AI 工具如何融入日常工程。
 
 [![Blog](https://img.shields.io/badge/BLOG-zangxuejian.com-050505?style=for-the-badge&logo=vercel&logoColor=white)](https://www.zangxuejian.com)
 [![Projects](https://img.shields.io/badge/PROJECTS-工程作品集-FFFFFF?style=for-the-badge&logo=github&logoColor=050505)](https://www.zangxuejian.com/projects/)
@@ -14,58 +14,66 @@
 
 ```text
 $ cat current-focus.txt
-observability / platform engineering / AI infrastructure
+platform engineering / observability / AI infrastructure
 ```
 
 ## 关于我
 
-我的技术经历从Linux、网络和系统运维开始，后来逐步转向Kubernetes、OpenShift和可观测性。最近在折腾AI API用量监控、边缘小屏和Agent工具。
+从 Linux、网络和中间件运维起步，逐步转向 Kubernetes / OpenShift 容器平台和可观测性。目前一边做平台运维，一边尝试把遇到的问题做成可以运行、复用的小工具。
 
-- 工作方向：基础设施、云原生平台、DevOps和可观测性
-- 常用技术：Linux、Nginx、Kubernetes、OpenShift、Prometheus、Grafana
-- 最近关注：AI Infra、Agent工作流和轻量边缘设备
-- 博客：[Zang Infra Notes](https://www.zangxuejian.com)
+- **日常工作方向：** 基础设施、容器平台、中间件与系统稳定性
+- **常用技术：** Linux、Nginx、Kubernetes、OpenShift、Prometheus、Grafana
+- **正在探索：** 离线环境下的日志观测、Agent 工作流与 AI Infra
+- **文章与经历：** [博客](https://www.zangxuejian.com) · [About](https://www.zangxuejian.com/about/)
 
-## 当前方向
+## 工程项目
 
-| 方向 | 正在关注 |
-| --- | --- |
-| **基础设施** | Linux · Networking · Nginx · DNS · TLS |
-| **云原生平台** | Kubernetes · OpenShift · Helm · Platform Engineering |
-| **可观测性** | Prometheus · Grafana · Logging · Alerting · Tracing |
-| **最近在做** | AI API用量监控 · Edge Display · Codex · MCP |
+### [LogsView 2.0 · Nginx 日志观测工作台](https://www.zangxuejian.com/2026/07/09/nginx-log-dashboard/)
 
-## 工程作品
+面向内网、DMZ 和离线环境的 Nginx 日志观测工具。节点 Agent 负责采集，服务端集中展示流量指标、采样请求明细和采集状态；支持请求检索、Request ID 关联，以及浅色工作台与深色大屏。全量指标聚合和明细采样分开处理，运行时不依赖互联网或 GPU。
 
-### Codex Agent Delegator
+`Nginx` `Python` `FastAPI` `SQLite` `Observability`
 
-这是一个连接Codex和辅助Agent的本地工具。我用它处理日志压缩、目录扫描、候选查找这类边界明确但比较占上下文的任务，Codex继续负责技术判断和代码修改。
+[阅读项目记录 →](https://www.zangxuejian.com/2026/07/09/nginx-log-dashboard/)
+
+### [Codex Agent Delegator](https://github.com/zangxuejian/codex-agent-delegator)
+
+连接 Codex 与本地 WorkBuddy MCP Server 的插件。把仓库扫描、资料提取和长上下文摘要等边界明确的辅助任务交给 WorkBuddy，最终判断、代码修改和评审仍由 Codex 负责。
 
 `Codex` `MCP` `Python` `Agent Workflow`
 
-[阅读设计与实现 →](https://www.zangxuejian.com/2026/07/05/codex-agent-delegator-thinking/)
+[查看代码](https://github.com/zangxuejian/codex-agent-delegator) · [阅读设计与实践](https://www.zangxuejian.com/2026/07/05/codex-agent-delegator-thinking/)
 
-### Nginx Log Dashboard
+### [DeepSeek 余额桌面小屏](https://github.com/zangxuejian/ESP)
 
-一个轻量的Nginx日志仪表盘，主要面向内网、DMZ和离线环境。目标很直接：机器不能随便联网时，也能快速查看入口层性能、异常请求和节点状态。
-
-`Nginx` `Python` `FastAPI` `Observability`
-
-[查看项目复盘 →](https://www.zangxuejian.com/2026/07/09/nginx-log-dashboard/)
-
-### DeepSeek AI Usage Dashboard
-
-我不想每次都打开网页查看DeepSeek余额，于是用ESP8266做了一块桌面小屏。它会定时显示API余额、账户状态和更新时间。
+用 ESP8266 和 1.44 英寸 TFT 屏显示 DeepSeek API 余额、账户状态与更新时间。云端 Node.js 服务获取余额并保管 API Key，设备通过 Wi-Fi 读取整理后的数据。
 
 `ESP8266` `Node.js` `DeepSeek API` `Edge Display`
 
-[阅读实践记录 →](https://www.zangxuejian.com/2026/06/22/personal-ai-observability-esp8266-deepseek-usage-dashboard/)
+[查看代码](https://github.com/zangxuejian/ESP) · [阅读制作记录](https://www.zangxuejian.com/2026/06/22/personal-ai-observability-esp8266-deepseek-usage-dashboard/)
 
-## 能力与认证
+### [LifeWindows · 人生窗口期](https://github.com/zangxuejian/LifeWindows)
 
-`RHCE` · `Red Hat OpenShift Administration` · `CKA` · `Prometheus Certified Associate` · `CCNA Routing & Switching`
+一个关于人生事件与时间感知的交互式网站。拖动年龄，观察事件卡片在「正盛 / 将谢 / 余温」之间变化；V3 还提供事件探索、详情和本地行动清单。事件年龄范围是内容组织模型，并非对个人机会的预测。
 
-完整的证书和经历放在博客的[About页面](https://www.zangxuejian.com/about/)，这里不重复铺开。
+`React` `TypeScript` `Vite` `Interactive Web`
+
+[查看代码](https://github.com/zangxuejian/LifeWindows) · [打开网站](https://lifewindows.vercel.app/)
+
+## 技术方向
+
+| 方向 | 关注内容 |
+| --- | --- |
+| 基础设施与中间件 | Linux · Networking · Nginx · DNS · TLS |
+| 云原生与平台工程 | Kubernetes · OpenShift · 容器平台运维 · 自动化交付 |
+| 可观测性 | Metrics · Logging · Alerting · Tracing |
+| AI Infra 与工具 | API 用量监控 · Agent 工作流 · 受限环境中的轻量实践 |
+
+## 认证
+
+`RHCE` · `Red Hat OpenShift Administration` · `CKA` · `Prometheus Certified Associate (PCA)` · `CCNA` · `OceanBase OBCA`
+
+更多经历和认证信息见[博客 About 页面](https://www.zangxuejian.com/about/)。
 
 ---
 
